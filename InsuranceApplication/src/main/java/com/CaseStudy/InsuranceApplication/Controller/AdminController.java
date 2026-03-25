@@ -1,7 +1,9 @@
 package com.CaseStudy.InsuranceApplication.Controller;
 
+import com.CaseStudy.InsuranceApplication.Dto.AdminRulesDto;
 import com.CaseStudy.InsuranceApplication.Entity.AdminRules;
 import com.CaseStudy.InsuranceApplication.Entity.ApplicationForm;
+import com.CaseStudy.InsuranceApplication.Entity.InsurancePlans;
 import com.CaseStudy.InsuranceApplication.Service.AdminRulesService;
 import com.CaseStudy.InsuranceApplication.Service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,14 @@ public class AdminController {
     ApplicationService applicationService;
 
     @PostMapping("/setRules")
-    public ResponseEntity <AdminRules> setRules(@RequestBody AdminRules adminRules){
-        AdminRules savedAdminRules = adminRulesService.setRules(adminRules);
+    public ResponseEntity <AdminRules> setRules(@RequestBody AdminRulesDto adminRulesDto){
+        AdminRules savedAdminRules = adminRulesService.setRules(adminRulesDto);
         return new ResponseEntity<>(savedAdminRules, HttpStatus.CREATED);
+    }
+    @PostMapping("/setPlans")
+    public ResponseEntity <InsurancePlans> setInsurancePlans(@RequestBody InsurancePlans insurancePlans){
+        InsurancePlans savedInsurancePlans = adminRulesService.setPlans(insurancePlans);
+        return new ResponseEntity<>(savedInsurancePlans, HttpStatus.CREATED);
     }
     @PutMapping("/updateRules/{id}")
     public ResponseEntity <String> updateRules(@RequestBody AdminRules adminRules, @PathVariable Integer id){

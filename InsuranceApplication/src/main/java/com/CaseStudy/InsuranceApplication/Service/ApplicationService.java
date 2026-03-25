@@ -6,6 +6,7 @@ import com.CaseStudy.InsuranceApplication.Entity.InsurancePlans;
 import com.CaseStudy.InsuranceApplication.Mapper.ApplicationFromMapper;
 import com.CaseStudy.InsuranceApplication.Repo.ApplicationRepo;
 import com.CaseStudy.InsuranceApplication.Repo.InsurancePlansRepo;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ public class ApplicationService {
 
 
     public ApplicationForm saveFrom(ApplicationFormDto formDto) {
+//   Step 1. User authentication is required check if user is valid or not means the user which is currently login is only applicable for apply
+//        Optional <User> user =
         Optional <InsurancePlans> insurancePlan =  insurancePlansRepo.findById(formDto.getInsurancePlanId());
         if (insurancePlan.isEmpty()) {
             throw new RuntimeException("Insurance Plan not found");
