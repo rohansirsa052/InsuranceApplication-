@@ -20,8 +20,6 @@ public class ApplicationService {
     @Autowired
     InsurancePlansRepo insurancePlansRepo;
 
-    @Autowired
-    ApplicationForm applicationForm;
 
     public ApplicationForm saveFrom(ApplicationFormDto formDto) {
         Optional <InsurancePlans> insurancePlan =  insurancePlansRepo.findById(formDto.getInsurancePlanId());
@@ -32,5 +30,14 @@ public class ApplicationService {
         applicationForm.setInsurancePlans(insurancePlan.get());
         return applicationRepo.save(applicationForm);
 
+    }
+
+    public ApplicationForm findById(Integer applicationId) {
+        Optional <ApplicationForm> fetchedApplication = applicationRepo.findById(applicationId);
+        if(fetchedApplication.isEmpty()){
+            return null;
+        }
+
+        return fetchedApplication.get();
     }
 }
