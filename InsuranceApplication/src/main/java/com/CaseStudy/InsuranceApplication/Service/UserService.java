@@ -7,6 +7,7 @@ import com.CaseStudy.InsuranceApplication.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,21 +18,26 @@ public class UserService {
     @Autowired
     UserRepo  userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public UserDto addUser(UserDto userDto) {
-        Users savedUser = userRepo.save(UserMapper.INSTANCE.user(userDto));
+        Users userEntity = UserMapper.INSTANCE.user(userDto);
+        userEntity.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        Users savedUser = userRepo.save(userEntity);
         return UserMapper.INSTANCE.userDto(savedUser);
     }
 
-    public  String loginUser(String username, String password) {
-        Users user = userRepo.findByUserName(username);
-        if (user == null) {
-            return "User not found";
-        }
-        if (!user.getPassword().equals(password)) {
-            return "Invalid password";
-        }
-        return "User logged in successfully";
-    }
+//    public  String loginUser(String username, String password) {
+//        Users user = userRepo.findByUserName(username);
+//        if (user == null) {
+//            return "User not found";
+//        }
+//        if (!user.getPassword().equals(password)) {
+//            return "Invalid password";
+//        }
+//        return "User logged in successfully";
+//    }
 
     public List<UserDto> findAll() {
         List <Users> usersList = userRepo.findAll();

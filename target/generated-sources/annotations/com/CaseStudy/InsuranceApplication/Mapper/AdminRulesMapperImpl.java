@@ -3,14 +3,12 @@ package com.CaseStudy.InsuranceApplication.Mapper;
 import com.CaseStudy.InsuranceApplication.Dto.AdminRulesDto;
 import com.CaseStudy.InsuranceApplication.Entity.AdminRules;
 import javax.annotation.processing.Generated;
-import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-03-26T00:40:58+0530",
+    date = "2026-03-26T22:20:11+0530",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
 )
-@Component
 public class AdminRulesMapperImpl implements AdminRulesMapper {
 
     @Override

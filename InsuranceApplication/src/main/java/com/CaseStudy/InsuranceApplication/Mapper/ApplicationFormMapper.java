@@ -8,8 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface ApplicationFromMapper {
-    ApplicationFromMapper INSTANCE = Mappers.getMapper(ApplicationFromMapper.class);
+public interface ApplicationFormMapper {
+    ApplicationFormMapper INSTANCE = Mappers.getMapper(ApplicationFormMapper.class);
 
     // Entity → DTO
     ApplicationFormDto toDto(ApplicationForm applicationForm);

@@ -5,7 +5,7 @@ import com.CaseStudy.InsuranceApplication.Entity.AdminRules;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface AdminRulesMapper {
 
     AdminRulesMapper INSTANCE = Mappers.getMapper(AdminRulesMapper.class);
